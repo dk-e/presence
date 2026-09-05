@@ -1,0 +1,44 @@
+{
+  "configurations": [
+    {
+      "type": "swift",
+      "request": "launch",
+      "args": [],
+      "cwd": "${workspaceFolder:presence}",
+      "name": "Debug presence",
+      "target": "presence",
+      "configuration": "debug",
+      "preLaunchTask": "swift: Build Debug presence"
+    },
+    {
+      "type": "swift",
+      "request": "launch",
+      "args": [],
+      "cwd": "${workspaceFolder:presence}",
+      "name": "Release presence",
+      "target": "presence",
+      "configuration": "release",
+      "preLaunchTask": "swift: Build Release presence"
+    },
+    {
+      "type": "swift",
+      "request": "launch",
+      "args": [],
+      "cwd": "${workspaceFolder:presence}",
+      "name": "Debug Presence",
+      "target": "Presence",
+      "configuration": "debug",
+      "preLaunchTask": "swift: Build Debug Presence"
+    },
+    {
+      "type": "swift",
+      "request": "launch",
+      "args": [],
+      "cwd": "${workspaceFolder:presence}",
+      "name": "Release Presence",
+      "target": "Presence",
+      "configuration": "release",
+      "preLaunchTask": "swift: Build Release Presence"
+    }
+  ]
+}
