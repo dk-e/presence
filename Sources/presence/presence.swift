@@ -33,7 +33,7 @@ final class PresenceModel: ObservableObject {
     /// Deliberately slow. Upstash's free tier bills per command, and the app
     /// reports sleep, wake and quit explicitly — so a faster beat would buy
     /// almost no accuracy while multiplying the monthly spend.
-    private static let interval: TimeInterval = 120
+    private static let interval: TimeInterval = 60
 
     /// Idle long enough that I'm not at the desk, short enough to be honest.
     private static let afkAfter: TimeInterval = 5 * 60

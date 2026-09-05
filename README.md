@@ -15,7 +15,7 @@ Think of it as a self-hosted Discord status, without needing Discord.
 
 ## How it works
 
-The app sits in your menubar and every 120 seconds POSTs a small JSON body to
+The app sits in your menubar and every 60 seconds POSTs a small JSON body to
 your endpoint:
 
 ```json
@@ -26,7 +26,7 @@ your endpoint:
   the last real keypress or mouse movement. After 5 minutes you're idle. It
   tracks physical input only, so a long build or a film still reads as away.
 - **`app`** is the frontmost application's name, via `NSWorkspace`. This needs
-  **no Accessibility permission** — that's only required for window *titles*.
+  **no Accessibility permission** — that's only required for window _titles_.
   It's suppressed while you're idle, since it'd just be whatever was open when
   you walked off.
 
@@ -45,15 +45,15 @@ only there to catch what those can't — a crash, a dead network, a yanked cable
 
 ### Why the heartbeat is slow
 
-120 seconds is deliberate. Because clean shutdowns are reported explicitly, a
+60 seconds is deliberate. Because clean shutdowns are reported explicitly, a
 faster heartbeat buys you almost no accuracy — it only narrows the window on
 crashes. Meanwhile the cost is linear:
 
 | Heartbeat | Writes/month (running 24/7) |
 | --------- | --------------------------- |
 | 30s       | 86,400                      |
-| 60s       | 43,200                      |
-| **120s**  | **21,600**                  |
+| **60s**   | **43,200**                  |
+| 120s      | 21,600                      |
 | 300s      | 8,640                       |
 
 On a metered store like Upstash's free tier (500k commands/month), that's the
@@ -179,13 +179,13 @@ if you want a quick way out.
 
 The menubar reports the real state, so read it first:
 
-| Menubar says | Meaning |
-| --- | --- |
-| `No config at ~/.config/presence/config.json` | Missing, empty, or malformed config |
-| `Rejected — check the secret` | 401 — `secret` doesn't match `PRESENCE_SECRET` |
-| `Error 404` | The endpoint isn't deployed at that URL |
-| `Unreachable` | No network, or the host is down |
-| `Online` / `Idle` | Working |
+| Menubar says                                  | Meaning                                        |
+| --------------------------------------------- | ---------------------------------------------- |
+| `No config at ~/.config/presence/config.json` | Missing, empty, or malformed config            |
+| `Rejected — check the secret`                 | 401 — `secret` doesn't match `PRESENCE_SECRET` |
+| `Error 404`                                   | The endpoint isn't deployed at that URL        |
+| `Unreachable`                                 | No network, or the host is down                |
+| `Online` / `Idle`                             | Working                                        |
 
 Running `Presence` from a terminal appears to hang. It hasn't — a menubar app
 runs an AppKit event loop that never returns. Use `&` if you want your prompt
